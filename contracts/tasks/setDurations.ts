@@ -3,18 +3,19 @@ import { MaciParameters } from '../utils/maci'
 
 task('set-durations', 'Set the signup and voting durations for future rounds')
   .addParam('factory', 'The funding round factory contract address')
-  .addParam('signup', 'Sign up duration in minutes', 60, types.int)
-  .addParam('voting', 'Voting duration in minutes', 10, types.int)
+  .addParam('signup', 'Sign up duration in days', 10, types.int)
+  .addParam('voting', 'Voting duration in days', 5, types.int)
   .setAction(async ({ factory, signup, voting }, { ethers }) => {
-    const signUpDuration = signup * 60
-    const votingDuration = voting * 60
+    const signUpDuration = signup * 60 * 60 * 24
+    const votingDuration = voting * 60 * 60 * 24
 
     const fundingRoundFactory = await ethers.getContractAt(
       'FundingRoundFactory',
       factory
     )
-
     const maciFactoryAddress = await fundingRoundFactory.maciFactory()
+    console.log({ maciFactoryAddress })
+
     const maciFactory = await ethers.getContractAt(
       'MACIFactory',
       maciFactoryAddress
