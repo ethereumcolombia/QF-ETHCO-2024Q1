@@ -1,4 +1,12 @@
-import { getEtherBalance, getTokenBalance, isVerifiedUser, isRegisteredUser, type User } from '@/api/user'
+import {
+  getEtherBalance,
+  getTokenBalance,
+  isVerifiedUser,
+  isRegisteredUser,
+  isGuildMember,
+  registerUserSimple,
+  type User,
+} from '@/api/user'
 import { defineStore } from 'pinia'
 import { useAppStore } from '@/stores'
 import type { WalletUser } from '@/stores'
@@ -10,6 +18,7 @@ import { getBrightId, type BrightId } from '@/api/bright-id'
 import { assert, ASSERT_NOT_CONNECTED_WALLET } from '@/utils/assert'
 import { sha256 } from '@/utils/crypto'
 import { LOGIN_MESSAGE } from '@/api/user'
+import { getUserRegistryAddress } from '@/api/projects'
 
 export type UserState = {
   currentUser: User | null
@@ -85,6 +94,22 @@ export const useUserStore = defineStore('user', {
         }
 
         isRegistered = await isRegisteredUser(appStore.currentRound.fundingRoundAddress, walletAddress)
+
+        if (this.currentUser && userRegistryType === UserRegistryType.SIMPLE) {
+          // Check Guild after signature
+          console.log('CHECKING ID')
+          isGuildMember(this.currentUser.walletAddress).then(async isGuildMember => {
+            console.log({ isGuildMember })
+            if (!isGuildMember) {
+              console.error('User is not a guild member')
+            } else if (this.currentUser) {
+              const appStore = useAppStore()
+              const userRegistryAddress = await getUserRegistryAddress(appStore?.currentRound?.fundingRoundAddress!)
+              const res = await registerUserSimple(userRegistryAddress, this.currentUser.walletAddress)
+              console.log({ res })
+            }
+          })
+        }
       }
 
       // Check if this user is in our user registry

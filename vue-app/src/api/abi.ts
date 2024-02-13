@@ -4,6 +4,7 @@ import { abi as FundingRound } from '../../../contracts/build/contracts/contract
 import { abi as MACIFactory } from '../../../contracts/build/contracts/contracts/MACIFactory.sol/MACIFactory.json'
 import { abi as MACI } from '../../../contracts/build/contracts/maci-contracts/sol/MACI.sol/MACI.json'
 import { abi as UserRegistry } from '../../../contracts/build/contracts/contracts/userRegistry/IUserRegistry.sol/IUserRegistry.json'
+import { abi as SimpleUserRegistry } from '../../../contracts/build/contracts/contracts/userRegistry/SimpleUserRegistry.sol/SimpleUserRegistry.json'
 import { abi as BrightIdUserRegistry } from '../../../contracts/build/contracts/contracts/userRegistry/BrightIdUserRegistry.sol/BrightIdUserRegistry.json'
 import { abi as SnapshotUserRegistry } from '../../../contracts/build/contracts/contracts/userRegistry/SnapshotUserRegistry.sol/SnapshotUserRegistry.json'
 import { abi as MerkleUserRegistry } from '../../../contracts/build/contracts/contracts/userRegistry/MerkleUserRegistry.sol/MerkleUserRegistry.json'
@@ -19,6 +20,7 @@ export {
   MACIFactory,
   MACI,
   UserRegistry,
+  SimpleUserRegistry,
   SnapshotUserRegistry,
   MerkleUserRegistry,
   BrightIdUserRegistry,

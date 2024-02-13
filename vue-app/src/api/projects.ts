@@ -61,6 +61,16 @@ export async function getRecipientRegistryAddress(roundAddress: string | null): 
   }
 }
 
+export async function getUserRegistryAddress(roundAddress: string | null): Promise<string> {
+  if (roundAddress !== null) {
+    const fundingRound = new Contract(roundAddress, FundingRound, provider)
+    return await fundingRound.userRegistry()
+  } else {
+    //TODO: upgrade factory to take it's address as a parameter
+    return await factory.userRegistry()
+  }
+}
+
 export async function getProjects(registryAddress: string, startTime?: number, endTime?: number): Promise<Project[]> {
   if (recipientRegistryType === 'simple') {
     return await SimpleRegistry.getProjects(registryAddress, startTime, endTime)

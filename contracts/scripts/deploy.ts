@@ -108,6 +108,10 @@ async function main() {
   await recipientRegistry.deployTransaction.wait()
   console.log(`Recipient registry deployed: ${recipientRegistry.address}`)
 
+  // const setMaxRecipientsTx = await recipientRegistry.setMaxRecipients(10)
+  // await setMaxRecipientsTx.wait()
+  // console.log(`Recipient registry max recipients: ${setMaxRecipientsTx}`)
+
   const setRecipientRegistryTx = await fundingRoundFactory.setRecipientRegistry(
     recipientRegistry.address
   )

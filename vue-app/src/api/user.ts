@@ -48,8 +48,13 @@ export async function getProfileImageUrl(walletAddress: string): Promise<string 
   return `${ipfsGatewayUrl}/ipfs/${profileImageHash}`
 }
 
+export async function isGuildMember(walletAddress: string): Promise<boolean> {
+  return true
+}
+
 export async function isVerifiedUser(userRegistryAddress: string, walletAddress: string): Promise<boolean> {
   const registry = new Contract(userRegistryAddress, UserRegistry, provider)
+
   return await registry.isVerifiedUser(walletAddress)
 }
 
@@ -83,6 +88,34 @@ export async function registerUserSnapshot(
   const registry = new Contract(registryAddress, SnapshotUserRegistry, signer)
   const walletAddress = await signer.getAddress()
   return registry.addUser(walletAddress, proofRlpBytes)
+}
+
+export async function registerUserSimple(
+  userRegistry: string,
+  userAddress: string,
+): Promise<ContractTransaction | false> {
+  try {
+    // const route = "/.netlify/functions/register-user"
+    const route = '/.netlify/functions/register-user'
+
+    const res = await fetch(`${route}?userRegistry=${userRegistry}&userAddress=${userAddress}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    console.log({ res })
+
+    if (res.status === 200) {
+      const json = await res.json()
+      console.log({ json })
+      return json
+    }
+    return false
+  } catch (error) {
+    console.log({ error })
+    return false
+  }
 }
 
 /**
