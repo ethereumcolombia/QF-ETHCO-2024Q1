@@ -31,14 +31,13 @@ function makeResult(result) {
  */
 async function registerUserSimple(userRegistry, userAddress) {
   // TODO: BE CAREFUL DONT PUSH THIS
-  const privateKey =
-    process.env.WALLET_PRIVATE_KEY || 'b865769c6227d8c7f64919dbc56ff140f5a71ba3c2155ef8d9e40aa5c4c8ea10'
+  const privateKey = process.env.WALLET_PRIVATE_KEY
   if (!privateKey) {
     return makeError('WALLET_PRIVATE_KEY not found in environment')
   }
   console.log({ privateKey, userRegistry, userAddress })
   // Set up provider and wallet
-  const rpcUrl = 'https://goerli.infura.io/v3/7d0c818399624dd4ab80d79e6a7893ec'
+  const rpcUrl = process.env.VITE_ETHEREUM_API_URL || 'https://goerli.infura.io/v3/7d0c818399624dd4ab80d79e6a7893ec'
   const provider = new providers.StaticJsonRpcProvider({ url: rpcUrl, skipFetchSetup: true })
   const wallet = new Wallet(privateKey, provider)
   // Set up the registry contract
@@ -60,7 +59,7 @@ async function registerUserSimple(userRegistry, userAddress) {
   }
 }
 
-exports.handler = async function (event) {
+exports.handler = async function(event) {
   // Ensure that the function only processes POST requests
   if (event.httpMethod !== 'POST') {
     return makeError('This function only accepts POST methods', 405)
