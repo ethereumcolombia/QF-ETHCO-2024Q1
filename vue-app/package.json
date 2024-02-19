@@ -7,7 +7,7 @@
     "preview": "vite preview",
     "build": "rm -rf dist/ && vite build && yarn build:functions",
     "build:functions": "webpack --config ./webpack.config.js",
-    "_build": "rm -rf dist/ && vite build && yarn build:lambda",
+    "build:with:lambda": "rm -rf dist/ && vite build && yarn build:lambda",
     "build:lambda": "netlify-lambda build src/lambda",
     "serve": "vite",
     "test": "yarn test:lint-i18n && vitest --run",
