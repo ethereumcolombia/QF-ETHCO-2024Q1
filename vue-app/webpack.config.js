@@ -37,7 +37,7 @@ module.exports = {
   plugins: [new Dotenv(), new webpack.IgnorePlugin({ resourceRegExp: /vertx/ })],
   // Use path.resolve to get an absolute path
   output: {
-    path: path.resolve(__dirname, '.netlify/functions'),
+    path: path.resolve(__dirname, 'netlify/functions'),
     filename: '[name].js',
     libraryTarget: 'commonjs',
   },
