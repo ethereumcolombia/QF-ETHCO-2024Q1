@@ -1235,6 +1235,22 @@
     "@chainsafe/persistent-merkle-tree" "^0.4.2"
     case "^1.6.3"
 
+"@clrfund/maci-cli@npm:@clrfund/maci-cli@0.10.2", "maci-cli@npm:@clrfund/maci-cli@0.10.2":
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/@clrfund/maci-cli/-/maci-cli-0.10.2.tgz#bf6609e65061dedf4b65e4185c19460c3f67913c"
+  integrity sha512-4Ey5flMN/jMDoHh5mwcAdkcx4r/Nqq7tPqB9yhPKKOuBLKWJpsoPoBHLaKXFNTmIV7ada3dcaSGSXC2P33XAbw==
+  dependencies:
+    argparse "^1.0.10"
+    ethers "^4.0.45"
+    maci-circuits "^0.10.0"
+    maci-config "^0.10.0"
+    maci-contracts "^0.10.1"
+    maci-core "npm:@clrfund/maci-core@^0.10.2"
+    maci-crypto "npm:@clrfund/maci-crypto@^0.10.2"
+    maci-domainobjs "npm:@clrfund/maci-domainobjs@^0.10.2"
+    prompt-sync "4.2.0"
+    source-map-support "^0.5.19"
+
 "@colors/colors@1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
@@ -12839,22 +12855,6 @@ maci-circuits@^0.10.0:
     n-readlines "^1.0.1"
     shelljs "^0.8.3"
     snarkjs "0.3.59"
-
-"maci-cli@npm:@clrfund/maci-cli@0.10.2":
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/@clrfund/maci-cli/-/maci-cli-0.10.2.tgz#bf6609e65061dedf4b65e4185c19460c3f67913c"
-  integrity sha512-4Ey5flMN/jMDoHh5mwcAdkcx4r/Nqq7tPqB9yhPKKOuBLKWJpsoPoBHLaKXFNTmIV7ada3dcaSGSXC2P33XAbw==
-  dependencies:
-    argparse "^1.0.10"
-    ethers "^4.0.45"
-    maci-circuits "^0.10.0"
-    maci-config "^0.10.0"
-    maci-contracts "^0.10.1"
-    maci-core "npm:@clrfund/maci-core@^0.10.2"
-    maci-crypto "npm:@clrfund/maci-crypto@^0.10.2"
-    maci-domainobjs "npm:@clrfund/maci-domainobjs@^0.10.2"
-    prompt-sync "4.2.0"
-    source-map-support "^0.5.19"
 
 maci-config@^0.10.0:
   version "0.10.0"

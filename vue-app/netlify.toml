@@ -1,4 +1,4 @@
 [build]
   command = "yarn build"
-  functions = "dist/lambda"
-  publish = "dist"
+  functions = "/vue-app/dist/lambda"
+  publish = "/vue-app/dist"

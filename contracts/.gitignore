@@ -2,6 +2,7 @@ build
 cache
 node_modules
 snark-params
+snark-params_64
 state.json
 proofs.json
 tally.json

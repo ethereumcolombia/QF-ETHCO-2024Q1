@@ -86,6 +86,15 @@ async function main(args: TallyArgs) {
     }
 
     // Process messages and tally votes
+    console.log({
+      contract: maciAddress,
+      eth_provider: providerUrl,
+      privkey: coordinatorMaciPrivKey,
+      tally_file: 'tally.json',
+      output: 'proofs.json',
+      logs_file: logsFile,
+      macistate: maciStateFile,
+    })
     const results = await genProofs({
       contract: maciAddress,
       eth_provider: providerUrl,
