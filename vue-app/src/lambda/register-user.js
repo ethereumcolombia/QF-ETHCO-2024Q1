@@ -10,6 +10,7 @@ function getCorsHeaders() {
     'Access-Control-Allow-Origin': '*', // This allows all domains. Be more specific for production environments.
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Credentials': true,
   }
 }
 

@@ -49,6 +49,7 @@ export async function getProfileImageUrl(walletAddress: string): Promise<string 
 }
 
 export async function isGuildMember(walletAddress: string): Promise<boolean> {
+  // TODO: Implement this
   return true
 }
 
@@ -93,22 +94,22 @@ export async function registerUserSnapshot(
 export async function registerUserSimple(
   userRegistry: string,
   userAddress: string,
-): Promise<ContractTransaction | false> {
+): Promise<ContractTransaction | boolean> {
   try {
     const route = '/.netlify/functions/register-user'
-
+    // const route = 'https://ethco-clrfund.netlify.app/.netlify/functions/register-user'
     const res = await fetch(`${route}?userRegistry=${userRegistry}&userAddress=${userAddress}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
     })
-    console.log({ res })
 
     if (res.status === 200) {
       const json = await res.json()
-      console.log({ json })
-      return json
+      const hash = json.tx.hash
+      console.log({ hash })
+      return hash
     }
     return false
   } catch (error) {

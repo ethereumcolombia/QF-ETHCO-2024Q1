@@ -106,7 +106,6 @@ export const useUserStore = defineStore('user', {
               const appStore = useAppStore()
               const userRegistryAddress = await getUserRegistryAddress(appStore?.currentRound?.fundingRoundAddress!)
               const res = await registerUserSimple(userRegistryAddress, this.currentUser.walletAddress)
-              console.log({ res })
             }
           })
         }
