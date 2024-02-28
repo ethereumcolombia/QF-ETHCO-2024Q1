@@ -5,16 +5,30 @@ import { SimpleUserRegistry } from '../api/abi'
 import fetch from 'node-fetch'
 global.fetch = fetch
 
+function getCorsHeaders() {
+  return {
+    'Access-Control-Allow-Origin': '*', // This allows all domains. Be more specific for production environments.
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  }
+}
+
 /**
  *  Returns an error object
  * @param errorMessage error message
  * @returns error object
  */
-function makeError(errorMessage, errorNum) {
+function makeError(errorMessage, errorNum = 400) {
   const body = JSON.stringify({ error: errorMessage })
-  return { statusCode: 400, body }
+  return {
+    statusCode: errorNum,
+    body,
+    headers: {
+      ...getCorsHeaders(),
+      'Content-Type': 'application/json',
+    },
+  }
 }
-
 /**
  * Returns the result with statusCode and body
  * @param result the result
@@ -22,8 +36,16 @@ function makeError(errorMessage, errorNum) {
  */
 function makeResult(result) {
   const body = JSON.stringify(result)
-  return { statusCode: 200, body }
+  return {
+    statusCode: 200,
+    body,
+    headers: {
+      ...getCorsHeaders(),
+      'Content-Type': 'application/json',
+    },
+  }
 }
+
 /**
  * Registers a user in the simple user registry
  * @param userRegistry The address of the user registry contract
@@ -60,7 +82,14 @@ async function registerUserSimple(userRegistry, userAddress) {
   }
 }
 
-exports.handler = async function(event) {
+exports.handler = async function (event) {
+  // Preflight request handling
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers: getCorsHeaders(),
+    }
+  }
   // Ensure that the function only processes POST requests
   if (event.httpMethod !== 'POST') {
     return makeError('This function only accepts POST methods', 405)

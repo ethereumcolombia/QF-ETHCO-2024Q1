@@ -96,7 +96,7 @@ export async function registerUserSimple(
 ): Promise<ContractTransaction | false> {
   try {
     // const route = "/.netlify/functions/register-user"
-    const route = '/.netlify/functions/register-user'
+    const route = 'https://ethco-clrfund.netlify.app/.netlify/functions/register-user'
 
     const res = await fetch(`${route}?userRegistry=${userRegistry}&userAddress=${userAddress}`, {
       method: 'POST',
