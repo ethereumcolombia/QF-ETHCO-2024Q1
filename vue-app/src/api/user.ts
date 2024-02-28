@@ -113,7 +113,7 @@ export async function registerUserSimple(
     }
     return false
   } catch (error) {
-    console.log({ error })
+    console.log({ registerError: error })
     return false
   }
 }

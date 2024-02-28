@@ -7,8 +7,6 @@
     "preview": "vite preview",
     "build": "rm -rf dist/ && vite build && yarn build:functions",
     "build:functions": "webpack --config ./webpack.config.js",
-    "build:with:lambda": "rm -rf dist/ && vite build && yarn build:lambda",
-    "build:lambda": "netlify-lambda build src/lambda",
     "serve": "vite",
     "test": "yarn test:lint-i18n && vitest --run",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
@@ -25,6 +23,7 @@
   },
   "dependencies": {
     "@clrfund/maci-utils": "^0.0.1",
+    "@ethersproject/shims": "^5.7.0",
     "@kleros/gtcr-encoder": "1.4.0",
     "@openfonts/inter_all": "^1.0.2",
     "@vuelidate/core": "^2.0.0",
