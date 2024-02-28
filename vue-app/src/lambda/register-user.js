@@ -2,7 +2,7 @@ import '@ethersproject/shims'
 import { providers, Wallet, ethers } from 'ethers'
 import { SimpleUserRegistry } from '../api/abi'
 
-const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args))
+import fetch from 'node-fetch'
 global.fetch = fetch
 
 /**
@@ -60,7 +60,7 @@ async function registerUserSimple(userRegistry, userAddress) {
   }
 }
 
-exports.handler = async function (event) {
+exports.handler = async function(event) {
   // Ensure that the function only processes POST requests
   if (event.httpMethod !== 'POST') {
     return makeError('This function only accepts POST methods', 405)
