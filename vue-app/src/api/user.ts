@@ -48,8 +48,27 @@ export async function getProfileImageUrl(walletAddress: string): Promise<string 
   return `${ipfsGatewayUrl}/ipfs/${profileImageHash}`
 }
 
-export async function isGuildMember(walletAddress: string): Promise<boolean> {
-  const guildId = 62094 // EthCo Guild ID
+async function fetchGuildId(guildName) {
+  const guildInfoUrl = `https://api.guild.xyz/v1/guild/${guildName}`
+  try {
+    const response = await fetch(guildInfoUrl)
+    const data = await response.json()
+    return data.id // Extracting the guild ID from the response
+  } catch (error) {
+    console.error('Error fetching guild ID:', error)
+    return null
+  }
+}
+
+export async function isGuildMember(walletAddress: string, guildName: string): Promise<boolean> {
+  // const guildId = 62094 // EthCo Guild ID
+  // Fetch the guild ID dynamically
+  const guildId = await fetchGuildId(guildName)
+  if (!guildId) {
+    console.error('Guild ID not found.')
+    return false
+  }
+
   const url = `https://api.guild.xyz/v1/guild/access/${guildId}/${walletAddress}`
 
   try {
@@ -59,13 +78,14 @@ export async function isGuildMember(walletAddress: string): Promise<boolean> {
     }
 
     const roles = await response.json()
+    // make these ids change for your own case
     const votanteQFRoleId = 111207
     const ethCoMemberRoleId = 110880
     const ethereanRoleId = 110879
     const accessRoleIds = [votanteQFRoleId, ethCoMemberRoleId, ethereanRoleId]
 
     // Check if the user has access to any of the specified roles
-    const hasAccess = roles.some(role => accessRoleIds.includes(role.roleId) && role.access)
+    const hasAccess = roles.some(role => accessRoleIds.includes(role.roleId) && !!role.access)
 
     return hasAccess
   } catch (error) {

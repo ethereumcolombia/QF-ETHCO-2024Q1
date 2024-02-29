@@ -98,14 +98,14 @@ export const useUserStore = defineStore('user', {
         if (this.currentUser && userRegistryType === UserRegistryType.SIMPLE) {
           // Check Guild after signature
           console.log('CHECKING ID')
-          isGuildMember(this.currentUser.walletAddress).then(async isGuildMember => {
+          isGuildMember(this.currentUser.walletAddress, 'ethcolombia').then(async isGuildMember => {
             console.log({ isGuildMember })
             if (!isGuildMember) {
-              console.log('User is not a guild member')
+              console.log('User is not an ethcolombia guild member')
             } else if (this.currentUser) {
               const appStore = useAppStore()
               const userRegistryAddress = await getUserRegistryAddress(appStore?.currentRound?.fundingRoundAddress!)
-              const res = await registerUserSimple(userRegistryAddress, this.currentUser.walletAddress)
+              await registerUserSimple(userRegistryAddress, this.currentUser.walletAddress)
             }
           })
         }
