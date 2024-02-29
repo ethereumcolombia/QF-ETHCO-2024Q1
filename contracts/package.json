@@ -9,6 +9,7 @@
     "deploy:local": "yarn clean && yarn build && hardhat run --network localhost scripts/deploy.ts",
     "deploy:arbitrum": "hardhat run --network arbitrum scripts/deploy.ts",
     "deploy:goerli": "hardhat run --network goerli scripts/deploy.ts",
+    "deploy:optimism": "hardhat run --network optimism scripts/deploy.ts",
     "deployTestRound:local": "hardhat run --network localhost scripts/deployTestRound.ts",
     "contribute:local": "hardhat run --network localhost scripts/contribute.ts",
     "vote:local": "hardhat run --network localhost scripts/vote.ts",

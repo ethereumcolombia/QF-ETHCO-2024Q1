@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: FundingRoundFactory
-    network: goerli
+    network: optimism
     source:
-      address: '0x794a5aB73802B987ecb13827eA382f930EE48589'
+      address: '0xa74A899959764A6cfDBeB3aB67348454165929ec'
       abi: FundingRoundFactory
-      startBlock: 10505768
+      startBlock: 116810216
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -52,10 +52,10 @@ dataSources:
       file: ./src/FundingRoundFactoryMapping.ts
   - kind: ethereum/contract
     name: OptimisticRecipientRegistry
-    network: goerli
+    network: optimism
     source:
       abi: OptimisticRecipientRegistry
-      startBlock: 10505773
+      startBlock: 116810228
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -77,7 +77,7 @@ dataSources:
 templates:
   - name: FundingRound
     kind: ethereum/contract
-    network: goerli
+    network: optimism
     source:
       abi: FundingRound
     mapping:
@@ -113,7 +113,7 @@ templates:
       file: ./src/FundingRoundMapping.ts
   - name: OptimisticRecipientRegistry
     kind: ethereum/contract
-    network: goerli
+    network: optimism
     source:
       abi: OptimisticRecipientRegistry
     mapping:
@@ -136,7 +136,7 @@ templates:
       file: ./src/OptimisticRecipientRegistryMapping.ts
   - name: BrightIdUserRegistry
     kind: ethereum/contract
-    network: goerli
+    network: optimism
     source:
       abi: BrightIdUserRegistry
     mapping:
@@ -157,7 +157,7 @@ templates:
       file: ./src/BrightIdUserRegistryMapping.ts
   - name: MACI
     kind: ethereum/contract
-    network: goerli
+    network: optimism
     source:
       abi: MACI
     mapping:
