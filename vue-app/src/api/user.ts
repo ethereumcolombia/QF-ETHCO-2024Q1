@@ -49,8 +49,29 @@ export async function getProfileImageUrl(walletAddress: string): Promise<string 
 }
 
 export async function isGuildMember(walletAddress: string): Promise<boolean> {
-  // TODO: Implement this
-  return true
+  const guildId = 62094 // EthCo Guild ID
+  const url = `https://api.guild.xyz/v1/guild/access/${guildId}/${walletAddress}`
+
+  try {
+    const response = await fetch(url)
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+
+    const roles = await response.json()
+    const votanteQFRoleId = 111207
+    const ethCoMemberRoleId = 110880
+    const ethereanRoleId = 110879
+    const accessRoleIds = [votanteQFRoleId, ethCoMemberRoleId, ethereanRoleId]
+
+    // Check if the user has access to any of the specified roles
+    const hasAccess = roles.some(role => accessRoleIds.includes(role.roleId) && role.access)
+
+    return hasAccess
+  } catch (error) {
+    console.error('Error checking guild membership:', error)
+    return false // Consider how to handle errors appropriately for your application
+  }
 }
 
 export async function isVerifiedUser(userRegistryAddress: string, walletAddress: string): Promise<boolean> {

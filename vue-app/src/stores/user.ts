@@ -101,7 +101,7 @@ export const useUserStore = defineStore('user', {
           isGuildMember(this.currentUser.walletAddress).then(async isGuildMember => {
             console.log({ isGuildMember })
             if (!isGuildMember) {
-              console.error('User is not a guild member')
+              console.log('User is not a guild member')
             } else if (this.currentUser) {
               const appStore = useAppStore()
               const userRegistryAddress = await getUserRegistryAddress(appStore?.currentRound?.fundingRoundAddress!)
