@@ -48,8 +48,7 @@
     </p>
     <p>
       {{ $t('recipients.register.p2_t1') }}
-      <links to="/about/maci">{{ $t('recipients.register.p2_link') }}</links
-      >{{ $t('recipients.register.p2_t2', { maxRecipients: maxRecipients }) }}
+      <links to="/about/maci">{{ $t('recipients.register.p2_link') }}</links>
     </p>
     <p>
       {{ $t('recipients.register.p3') }}

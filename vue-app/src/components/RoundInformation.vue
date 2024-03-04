@@ -192,34 +192,6 @@
             </div>
           </div>
           <div class="round-info-sub-item">
-            <div class="round-info-item-top">
-              <div class="round-info-title">{{ $t('roundInfo.div16') }}</div>
-              <div
-                v-tooltip="{
-                  content: $t('roundInfo.tooltip8'),
-                }"
-              >
-                <img width="16" src="@/assets/info.svg" />
-              </div>
-              <div
-                v-if="isCurrentRound && !isRoundFinalized && !isRoundTallying && !isRoundCancelled"
-                v-tooltip="$t('roundInfo.tooltip9')"
-                class="add-link"
-                @click="addMatchingFunds"
-              >
-                <img src="@/assets/add.svg" width="16px" />
-                <span class="add-funds-link">{{ $t('roundInfo.span1') }}</span>
-              </div>
-            </div>
-
-            <div class="round-info-value">
-              <div class="value">
-                {{ formatAmount(roundInfo.matchingPool) }}
-              </div>
-              <div class="unit">{{ roundInfo.nativeTokenSymbol }}</div>
-            </div>
-          </div>
-          <div class="round-info-sub-item">
             <div>
               <div class="round-info-title">{{ $t('roundInfo.div17') }}</div>
               <div class="round-info-value">
@@ -345,7 +317,8 @@ const formatTotalInRound = computed(() => {
   const { contributions, matchingPool } = roundInfo.value
   const totalInRound = contributions.add(matchingPool)
 
-  return formatAmount(totalInRound)
+  return formatAmount(7500 * 10 ** 6)
+  // return formatAmount(totalInRound)
 })
 
 const haveNotice = computed(() => {

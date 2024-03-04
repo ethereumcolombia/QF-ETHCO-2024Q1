@@ -62,13 +62,7 @@
         <strong>{{ formatAmount(deposit) }} {{ depositToken }}</strong
         >{{ $t('joinLanding.security_deposit') }}
       </div>
-      <div class="subtitle mt2">
-        {{
-          $t('joinLanding.cap_on_projects', {
-            maxRecipients: maxRecipients,
-          })
-        }}
-      </div>
+
       <div class="info-boxes">
         <div class="apply-callout">
           <div class="countdown-label caps">
@@ -123,9 +117,7 @@
         <strong>{{ formatAmount(deposit) }} {{ depositToken }}</strong
         >{{ $t('joinLanding.security_deposit') }}
       </div>
-      <div class="subtitle mt2">
-        {{ $t('joinLanding.cap_on_projects', { maxRecipients: maxRecipients }) }}
-      </div>
+
       <div class="info-boxes">
         <div class="apply-callout">
           <div class="countdown-label caps">
