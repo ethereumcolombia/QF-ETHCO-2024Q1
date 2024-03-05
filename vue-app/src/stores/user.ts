@@ -103,8 +103,9 @@ export const useUserStore = defineStore('user', {
             if (!isGuildMember) {
               console.log('User is not an ethcolombia guild member')
             } else if (this.currentUser) {
-              const appStore = useAppStore()
-              const userRegistryAddress = await getUserRegistryAddress(appStore?.currentRound?.fundingRoundAddress!)
+              // const appStore = useAppStore()
+              // const userRegistryAddress = await getUserRegistryAddress(appStore?.currentRound?.fundingRoundAddress!)
+              const userRegistryAddress = '0x3b370a841594f82D889132eA756141bB53e3E8D7'
               await registerUserSimple(userRegistryAddress, this.currentUser.walletAddress)
             }
           })
