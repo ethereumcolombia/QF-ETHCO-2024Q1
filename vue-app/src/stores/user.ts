@@ -60,6 +60,31 @@ export const useUserStore = defineStore('user', {
           throw new Error(signature)
         }
         this.currentUser.encryptionKey = sha256(signature)
+
+        // DO check on guild
+
+        if (this.currentUser && userRegistryType === UserRegistryType.SIMPLE) {
+          // Check Guild after signature
+          console.log('CHECKING ID')
+          isGuildMember(this.currentUser.walletAddress, 'ethcolombia').then(async isGuildMember => {
+            console.log({ isGuildMember })
+            if (!isGuildMember) {
+              console.log('User is not an ethcolombia guild member')
+            } else if (this.currentUser) {
+              const appStore = useAppStore()
+              const userRegistryAddress = await getUserRegistryAddress(appStore?.currentRound?.fundingRoundAddress!)
+              // const userRegistryAddress = '0x3b370a841594f82D889132eA756141bB53e3E8D7'
+              const registered = await registerUserSimple(userRegistryAddress, this.currentUser.walletAddress)
+              console.log({ user: this.currentUser, simpleRegisterResponse: registered })
+              if (!!registered) {
+                this.currentUser = {
+                  ...this.currentUser,
+                  isRegistered: true,
+                }
+              }
+            }
+          })
+        }
       }
     },
     async loadUserInfo() {
@@ -94,22 +119,6 @@ export const useUserStore = defineStore('user', {
         }
 
         isRegistered = await isRegisteredUser(appStore.currentRound.fundingRoundAddress, walletAddress)
-
-        if (this.currentUser && userRegistryType === UserRegistryType.SIMPLE) {
-          // Check Guild after signature
-          console.log('CHECKING ID')
-          isGuildMember(this.currentUser.walletAddress, 'ethcolombia').then(async isGuildMember => {
-            console.log({ isGuildMember })
-            if (!isGuildMember) {
-              console.log('User is not an ethcolombia guild member')
-            } else if (this.currentUser) {
-              // const appStore = useAppStore()
-              // const userRegistryAddress = await getUserRegistryAddress(appStore?.currentRound?.fundingRoundAddress!)
-              const userRegistryAddress = '0x3b370a841594f82D889132eA756141bB53e3E8D7'
-              await registerUserSimple(userRegistryAddress, this.currentUser.walletAddress)
-            }
-          })
-        }
       }
 
       // Check if this user is in our user registry
