@@ -61,7 +61,8 @@ async function registerUserSimple(userRegistry, userAddress) {
   }
   console.log({ privateKey, userRegistry, userAddress })
   // Set up provider and wallet
-  const rpcUrl = process.env.VITE_ETHEREUM_API_URL || 'https://goerli.infura.io/v3/7d0c818399624dd4ab80d79e6a7893ec'
+  const rpcUrl =
+    process.env.ETHEREUM_API_URL || 'https://optimism-mainnet.infura.io/v3/7d0c818399624dd4ab80d79e6a7893ec'
   const provider = new providers.StaticJsonRpcProvider({ url: rpcUrl, skipFetchSetup: true })
   const wallet = new Wallet(privateKey, provider)
   // Set up the registry contract
