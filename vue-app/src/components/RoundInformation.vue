@@ -202,7 +202,7 @@
                 <img width="16" src="@/assets/info.svg" />
               </div>
               <div
-                v-if="isCurrentRound && !isRoundFinalized && !isRoundTallying && !isRoundCancelled"
+                v-if="isCurrentRound && !isRoundFinalized && !isRoundCancelled"
                 v-tooltip="$t('roundInfo.tooltip9')"
                 class="add-link"
                 @click="addMatchingFunds"
