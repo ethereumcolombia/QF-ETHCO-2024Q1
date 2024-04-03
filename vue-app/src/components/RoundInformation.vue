@@ -214,7 +214,7 @@
 
             <div class="round-info-value">
               <div class="value">
-                {{ formatAmount(6500 * 10 ** 6) }}
+                {{ formatAmount(roundInfo.matchingPool) }}
               </div>
               <div class="unit">{{ roundInfo.nativeTokenSymbol }}</div>
             </div>
@@ -344,7 +344,7 @@ const formatTotalInRound = computed(() => {
 
   const { contributions, matchingPool } = roundInfo.value
   const totalInRound = contributions.add(matchingPool)
-  const total = totalInRound.add(6500 * 10 ** 6)
+  const total = totalInRound
   //  return formatAmount(totalInRound + 6500 * 10 ** 6)
   return formatAmount(total)
 })
